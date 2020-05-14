@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'lawngreen'
     ]
 
-//The Tetrominos take 2
+//The Tetrominos take 3
 const lTetromino = [
     [1,  width+1, width*2+1, 2],
     [width, width+1, width+2, width*2+2],
