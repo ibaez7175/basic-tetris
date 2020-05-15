@@ -16,7 +16,8 @@
 }
 
 .button-wrap {
-    margin-left: 432px;
+    display: flex;
+    justify-content: center;
 }
 
 .mini-grid {

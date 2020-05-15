@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let nextRandom = 0
     const scoreDisplay = document.querySelector('#score')
     const startBtn = document.querySelector('#start-button')
+    //const lineDisplay = document.querySelector('#lines')
     let timerId
     let score = 0
     let colors = [
@@ -111,6 +112,7 @@ function freeze() {
         draw()
         displayShape()
         addScore()
+        //addLines()
         gameOver()
     }
 }
@@ -185,7 +187,7 @@ startBtn.addEventListener('click', () => {
         timerId = null
     } else {
         draw()
-        timerId = setInterval(moveDown, 500)
+        timerId = setInterval(moveDown, 150)
         nextRandom = Math.floor(Math.random()*theTetrominos.length)
         displayShape()
     }
@@ -198,7 +200,9 @@ function addScore() {
       
       if(row.every(index => squares[index].classList.contains('taken'))){
           score +=10
+         //lines = score % 10;
           scoreDisplay.innerHTML = score
+          //lineDisplay.innerHTML = lines
           row.forEach(index => {
               squares[index].classList.remove('taken')
               squares[index].classList.remove('tetromino')
@@ -211,10 +215,23 @@ function addScore() {
     }
 }
 
+/*count lines
+function addLines() {
+    for (let i=0; i < 399 ; i +=width){
+      const row = [i, i+1, i+2, i+3, i+4, i+5, i+6, i+7, i+8, i+9]
+      
+      if(row.every(index => squares[index].classList.contains('taken'))){
+          lines +=1
+          lineDisplay.innerHTML = lines
+      }
+    }
+}
+*/
+
 //game over
 function gameOver(){
     if(current.some(index => squares[currentPosition + index].classList.contains('taken'))){
-        scoreDisplay.innerHTML = 'end'
+        scoreDisplay.innerHTML = `Final ` + score
         clearInterval(timerId)
     }
 }
